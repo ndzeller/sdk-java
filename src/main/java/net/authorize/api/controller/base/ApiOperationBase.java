@@ -31,7 +31,7 @@ public abstract class ApiOperationBase<Q extends ANetApiRequest, S extends ANetA
 	protected static Log logger = LogFactory.getLog(ApiOperationBase.class);
 
 	private static Environment environment = null;
-	private static MerchantAuthenticationType merchantAuthentication = null;
+	private MerchantAuthenticationType merchantAuthentication = null;
 	
 	private Q apiRequest = null;
 	private S apiResponse = null;
@@ -103,13 +103,13 @@ public abstract class ApiOperationBase<Q extends ANetApiRequest, S extends ANetA
 		ApiOperationBase.environment = environment;
 	}
 
-	public static MerchantAuthenticationType getMerchantAuthentication() {
+	public MerchantAuthenticationType getMerchantAuthentication() {
 		return merchantAuthentication;
 	}
 
-	public static void setMerchantAuthentication(
+	public void setMerchantAuthentication(
 			MerchantAuthenticationType merchantAuthentication) {
-		ApiOperationBase.merchantAuthentication = merchantAuthentication;
+		merchantAuthentication = merchantAuthentication;
 	}
 
 	public S executeWithApiResponse() {
@@ -241,9 +241,9 @@ public abstract class ApiOperationBase<Q extends ANetApiRequest, S extends ANetA
 		ANetApiRequest request = this.getApiRequest();
 		if ( null == request.getMerchantAuthentication())
 		{
-			if ( null != ApiOperationBase.getMerchantAuthentication())
+			if ( null != getMerchantAuthentication())
 			{
-				request.setMerchantAuthentication(ApiOperationBase.getMerchantAuthentication());
+				request.setMerchantAuthentication(getMerchantAuthentication());
 			}
 			else
 			{

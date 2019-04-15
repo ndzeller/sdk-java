@@ -62,12 +62,12 @@ public class CustomerProfileSampleTest  extends ApiCoreTestBase {
 	{
 		//Common code to set for all requests
 		ApiOperationBase.setEnvironment(environment);
-		ApiOperationBase.setMerchantAuthentication(merchantAuthenticationType);
 
 		CreateCustomerProfileResponse createdCustomerProfile = createCustomerProfile();
 
 		try {
 			GetCustomerPaymentProfileListRequest request = new GetCustomerPaymentProfileListRequest();
+			request.setMerchantAuthentication(merchantAuthenticationType);
 			request.setRefId(refId);
 			request.setSearchType(CustomerPaymentProfileSearchTypeEnum.CARDS_EXPIRING_IN_MONTH);
 			request.setMonth("2040-12");
@@ -108,6 +108,7 @@ public class CustomerProfileSampleTest  extends ApiCoreTestBase {
 		} finally {
 			// delete
 			DeleteCustomerProfileRequest deleteCustomerProfileRequest = new DeleteCustomerProfileRequest();
+			deleteCustomerProfileRequest.setMerchantAuthentication(merchantAuthenticationType);
 			deleteCustomerProfileRequest.setRefId(refId);
 			deleteCustomerProfileRequest.setCustomerProfileId(createdCustomerProfile.getCustomerProfileId());
 
@@ -126,9 +127,9 @@ public class CustomerProfileSampleTest  extends ApiCoreTestBase {
 	{
 		//Common code to set for all requests
 		ApiOperationBase.setEnvironment(environment);
-		ApiOperationBase.setMerchantAuthentication(merchantAuthenticationType);
 		
 		CreateCustomerProfileRequest request = new CreateCustomerProfileRequest();
+		request.setMerchantAuthentication(merchantAuthenticationType);
 		request.setRefId(refId);
 		
 		CreditCardType creditCard = new CreditCardType();

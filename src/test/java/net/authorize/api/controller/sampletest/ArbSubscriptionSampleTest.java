@@ -61,13 +61,14 @@ public class ArbSubscriptionSampleTest extends ApiCoreTestBase {
 
 		//Common code to set for all requests
 		ApiOperationBase.setEnvironment(environment);
-		ApiOperationBase.setMerchantAuthentication(merchantAuthenticationType);
 		
 		//create
 		ARBCreateSubscriptionRequest createRequest = new ARBCreateSubscriptionRequest();
+		createRequest.setMerchantAuthentication(merchantAuthenticationType);
 		createRequest.setRefId(refId);
 		createRequest.setSubscription(arbSubscriptionOne);
 		ARBCreateSubscriptionController createController = new ARBCreateSubscriptionController(createRequest);		
+//		createController.setMerchantAuthentication(merchantAuthenticationType);
 		//separate execute and getResponse calls
 		createController.execute();
 		ARBCreateSubscriptionResponse createResponse = createController.getApiResponse();
@@ -81,6 +82,7 @@ public class ArbSubscriptionSampleTest extends ApiCoreTestBase {
 			LogHelper.info(logger, "Getting Subscription Information for SubscriptionId: %s", subscriptionId);
 			
 			ARBGetSubscriptionRequest getSubscriptionRequest = new ARBGetSubscriptionRequest();
+			getSubscriptionRequest.setMerchantAuthentication(merchantAuthenticationType);
 			getSubscriptionRequest.setRefId(refId);
 			getSubscriptionRequest.setSubscriptionId(subscriptionId);
 			
@@ -114,10 +116,10 @@ public class ArbSubscriptionSampleTest extends ApiCoreTestBase {
 
 		//Common code to set for all requests
 		ApiOperationBase.setEnvironment(environment);
-		ApiOperationBase.setMerchantAuthentication(merchantAuthenticationType);
 		
 		//create
 		ARBCreateSubscriptionRequest createRequest = new ARBCreateSubscriptionRequest();
+		createRequest.setMerchantAuthentication(merchantAuthenticationType);
 		createRequest.setRefId(refId);
 		createRequest.setSubscription(arbSubscriptionOne);
 		ARBCreateSubscriptionController createController = new ARBCreateSubscriptionController(createRequest);		

@@ -61,7 +61,6 @@ public class CustomerProfileNoCardCode extends ApiCoreTestBase {
 	public void Issue46() {
 
 		ApiOperationBase.setEnvironment(environment);
-		ApiOperationBase.setMerchantAuthentication(merchantAuthenticationType);
 		String customerprofileId = "36374423";
 		getPaymentDetails(merchantAuthenticationType, customerprofileId, ValidationModeEnum.TEST_MODE);
 		Assert.assertNotNull(customerprofileId);

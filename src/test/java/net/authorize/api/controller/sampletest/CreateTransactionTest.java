@@ -54,7 +54,7 @@ public class CreateTransactionTest extends ApiCoreTestBase {
 	{
 		CreditCardType creditCard = new CreditCardType();
 		creditCard.setCardNumber("4111111111111111");
-		creditCard.setExpirationDate("0616");
+		creditCard.setExpirationDate("0626");
 		
 		PaymentType paymentType = new PaymentType();
 		paymentType.setCreditCard(creditCard);
@@ -85,12 +85,13 @@ public class CreateTransactionTest extends ApiCoreTestBase {
 			DecryptPaymentDataRequest decryptPaymentDataRequest = new DecryptPaymentDataRequest();
 			decryptPaymentDataRequest.setOpaqueData(opaqueData);
 			decryptPaymentDataRequest.setCallId("1238408836021304101");
+			decryptPaymentDataRequest.setMerchantAuthentication(merchantAuthenticationType);
 			
 			//Common code to set for all requests
 			ApiOperationBase.setEnvironment(environment);
-			ApiOperationBase.setMerchantAuthentication(merchantAuthenticationType);
 
 			DecryptPaymentDataController controller = new DecryptPaymentDataController(decryptPaymentDataRequest);
+			controller.setMerchantAuthentication(merchantAuthenticationType);
 			controller.execute();
 		
 			DecryptPaymentDataResponse response = controller.getApiResponse();
@@ -203,7 +204,6 @@ public class CreateTransactionTest extends ApiCoreTestBase {
 	{
 		//Common code to set for all requests
 		ApiOperationBase.setEnvironment(environment);
-		ApiOperationBase.setMerchantAuthentication(merchantAuthenticationType);
 				
 		TransactionRequestType requestInternal = new TransactionRequestType();
 		requestInternal.setTransactionType(transactionType);
@@ -214,6 +214,7 @@ public class CreateTransactionTest extends ApiCoreTestBase {
 		
 		CreateTransactionRequest request = new CreateTransactionRequest();
 		request.setTransactionRequest(requestInternal);
+		request.setMerchantAuthentication(merchantAuthenticationType);
 				
 		CreateTransactionController controller = new CreateTransactionController(request);
 		controller.execute();

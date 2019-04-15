@@ -55,7 +55,7 @@ After you have your credentials, load them into the appropriate variables in you
     MerchantAuthenticationType merchantAuthenticationType  = new MerchantAuthenticationType() ;
     merchantAuthenticationType.setName("YOUR_API_LOGIN_ID");
     merchantAuthenticationType.setTransactionKey("YOUR_TRANSACTION_KEY");
-    ApiOperationBase.setMerchantAuthentication(merchantAuthenticationType);
+    request.setMerchantAuthentication(merchantAuthenticationType);
 ```
 
 Never include your API Login ID and Transaction Key directly in a file in a publicly accessible portion of your website. As a best practice, define the API Login ID and Transaction Key in a constants file, and reference those constants in your code.
